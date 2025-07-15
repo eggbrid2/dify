@@ -37,7 +37,7 @@ const Apps = ({
 }: AppsProps) => {
   const { t } = useTranslation()
   const { hasEditPermission } = useContext(ExploreContext)
-  const allCategoriesEn = t('explore.apps.allCategories', { lng: 'en' })
+  const allCategoriesEn = t('explore.apps.allCategories', { lng: 'ch' })
 
   const [keywords, setKeywords] = useState('')
   const [searchKeywords, setSearchKeywords] = useState('')
@@ -165,23 +165,13 @@ const Apps = ({
     <div className={cn(
       'flex h-full flex-col border-l-[0.5px] border-divider-regular',
     )}>
-
-      <div className='shrink-0 px-12 pt-6'>
-        <div className={`mb-1 ${s.textGradient} text-xl font-semibold`}>{t('explore.apps.title')}</div>
-        <div className='text-sm text-text-tertiary'>{t('explore.apps.description')}</div>
-      </div>
-
       <div className={cn(
-        'mt-6 flex items-center justify-between px-12',
+        'mt-3 flex items-center justify-between px-6',
       )}>
-        <>
-          <Category
-            list={categories}
-            value={currCategory}
-            onChange={setCurrCategory}
-            allCategoriesEn={allCategoriesEn}
-          />
-        </>
+        <div className='shrink-0 px-6 pt-2 flex flex-row justify-start items-center'>
+          <div className={`mb-1 ${s.textGradient} text-xl font-semibold`}>{t('explore.apps.title')}</div>
+          <div className='ml-2 text-sm text-text-tertiary'>{t('explore.apps.description')}</div>
+        </div>
         <Input
           showLeftIcon
           showClearIcon
@@ -190,57 +180,65 @@ const Apps = ({
           onChange={e => handleKeywordsChange(e.target.value)}
           onClear={() => handleKeywordsChange('')}
         />
-
       </div>
-
       <div className={cn(
-        'relative mt-4 flex flex-1 shrink-0 grow flex-col overflow-auto pb-6',
+        'mt-3 h-full flex flex-row  justify-between item',
       )}>
-        <nav
-          className={cn(
-            s.appList,
-            'grid shrink-0 content-start gap-4 px-6 sm:px-12',
-          )}>
-          {searchFilteredList.map(app => (
-            <AppCard
-              key={app.app_id}
-              isExplore
-              app={app}
-              canCreate={hasEditPermission}
-              onCreate={() => {
-                setCurrApp(app)
-                setIsShowCreateModal(true)
-              }}
-            />
-          ))}
-        </nav>
-      </div>
-      {isShowCreateModal && (
-        <CreateAppModal
-          appIconType={currApp?.app.icon_type || 'emoji'}
-          appIcon={currApp?.app.icon || ''}
-          appIconBackground={currApp?.app.icon_background || ''}
-          appIconUrl={currApp?.app.icon_url}
-          appName={currApp?.app.name || ''}
-          appDescription={currApp?.app.description || ''}
-          show={isShowCreateModal}
-          onConfirm={onCreate}
-          confirmDisabled={isFetching}
-          onHide={() => setIsShowCreateModal(false)}
+        <Category
+          list={categories}
+          value={currCategory}
+          onChange={setCurrCategory}
+          allCategoriesEn={allCategoriesEn}
         />
-      )}
-      {
-        showDSLConfirmModal && (
-          <DSLConfirmModal
-            versions={versions}
-            onCancel={() => setShowDSLConfirmModal(false)}
-            onConfirm={onConfirmDSL}
+
+        <div className={cn(
+          'relative h-full flex flex-1 shrink-0 grow flex-col overflow-auto pb-6 bg-components-kbd-bg-gray ',
+        )}>
+          <nav
+            className={cn(
+              s.appList,
+              'grid shrink-0 content-start gap-6 px-6 sm:px-12',
+            )}>
+            {searchFilteredList.map(app => (
+              <AppCard
+                key={app.app_id}
+                isExplore
+                app={app}
+                canCreate={hasEditPermission}
+                onCreate={() => {
+                  setCurrApp(app)
+                  setIsShowCreateModal(true)
+                }}
+              />
+            ))}
+          </nav>
+        </div>
+        {isShowCreateModal && (
+          <CreateAppModal
+            appIconType={currApp?.app.icon_type || 'emoji'}
+            appIcon={currApp?.app.icon || ''}
+            appIconBackground={currApp?.app.icon_background || ''}
+            appIconUrl={currApp?.app.icon_url}
+            appName={currApp?.app.name || ''}
+            appDescription={currApp?.app.description || ''}
+            show={isShowCreateModal}
+            onConfirm={onCreate}
             confirmDisabled={isFetching}
+            onHide={() => setIsShowCreateModal(false)}
           />
-        )
-      }
+        )}
+        {
+          showDSLConfirmModal && (
+            <DSLConfirmModal
+              versions={versions}
+              onCancel={() => setShowDSLConfirmModal(false)}
+              onConfirm={onConfirmDSL}
+              confirmDisabled={isFetching}
+            />
+          )
+        }
+      </div>
     </div>
   )
 }
-
 export default React.memo(Apps)

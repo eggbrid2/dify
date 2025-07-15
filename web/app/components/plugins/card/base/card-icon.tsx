@@ -44,7 +44,7 @@ const Icon = ({
     <div
       className={cn('relative shrink-0 rounded-md bg-contain bg-center bg-no-repeat', iconSizeMap[size], className)}
       style={{
-        backgroundImage: `url(${src})`,
+        backgroundImage: `url(${src?.startsWith('/console/api') ? `${process.env.NEXT_PUBLIC_API_PREFIX + src.replace('/console/api', '')}` : src})`,
       }}
     >
       {

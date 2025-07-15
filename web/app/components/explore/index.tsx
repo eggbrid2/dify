@@ -54,7 +54,7 @@ const Explore: FC<IExploreProps> = ({
           }
         }
       >
-        <Sidebar controlUpdateInstalledApps={controlUpdateInstalledApps} />
+        {/* <Sidebar controlUpdateInstalledApps={controlUpdateInstalledApps} /> */}
         <div className='w-0 grow'>
           {children}
         </div>

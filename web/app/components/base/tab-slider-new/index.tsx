@@ -19,13 +19,13 @@ const TabSliderNew: FC<TabSliderProps> = ({
   options,
 }) => {
   return (
-    <div className={cn(className, 'relative flex')}>
+    <div className={cn(className, 'h-full flex flex-col w-[200px] text-[13px] m-2 border-r')}>
       {options.map(option => (
         <div
           key={option.value}
           onClick={() => onChange(option.value)}
           className={cn(
-            'mr-1 flex h-[32px] cursor-pointer items-center rounded-lg border-[0.5px] border-transparent px-3 py-[7px] text-[13px] font-medium leading-[18px] text-text-tertiary hover:bg-components-main-nav-nav-button-bg-active',
+            'flex h-[50px]  w-[190px] cursor-pointer items-center rounded-lg px-3 py-[7px] font-medium leading-[18px] text-text-tertiary hover:bg-components-main-nav-nav-button-bg-active border-b',
             value === option.value && 'border-components-main-nav-nav-button-border bg-components-main-nav-nav-button-bg-active text-components-main-nav-nav-button-text-active shadow-xs',
           )}
         >

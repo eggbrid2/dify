@@ -751,6 +751,7 @@ const vars = {
 
   'dify-logo-dify-logo-blue': 'var(--color-dify-logo-dify-logo-blue)',
   'dify-logo-dify-logo-black': 'var(--color-dify-logo-dify-logo-black)',
+  'background-header': 'var(--color-background-header)',
 
 }
 export default vars
