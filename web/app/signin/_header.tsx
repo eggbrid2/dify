@@ -22,10 +22,10 @@ const Header = () => {
   const { locale, setLocaleOnClient } = useContext(I18n)
 
   return (
-    <div className='flex w-full items-center justify-between p-6'>
+    <div className='flex w-full items-center justify-between p-12 absolute top-0'>
       <DifyLogo size='large' />
       <div className='flex items-center gap-1'>
-        <Select
+        {/* <Select
           value={locale}
           items={languages.filter(item => item.supported)}
           onChange={(value) => {
@@ -33,7 +33,7 @@ const Header = () => {
           }}
         />
         <Divider type='vertical' className='mx-0 ml-2 h-4' />
-        <ThemeSelector />
+        <ThemeSelector /> */}
       </div>
     </div>
   )

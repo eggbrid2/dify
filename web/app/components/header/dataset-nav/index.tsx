@@ -39,11 +39,11 @@ const DatasetNav = () => {
   const handleLoadmore = useCallback(() => {
     setSize(size => size + 1)
   }, [setSize])
-
+  // icon={<RiBook2Line className='h-4 w-4' />}
+  // activeIcon={<RiBook2Fill className='h-4 w-4' />}
   return (
     <Nav
-      icon={<RiBook2Line className='h-4 w-4' />}
-      activeIcon={<RiBook2Fill className='h-4 w-4' />}
+
       text={t('common.menus.datasets')}
       activeSegment='datasets'
       link='/datasets'

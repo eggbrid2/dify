@@ -375,7 +375,7 @@ const vars = {
   'text-empty-state-icon': 'var(--color-text-empty-state-icon)',
   'text-inverted': 'var(--color-text-inverted)',
   'text-inverted-dimmed': 'var(--color-text-inverted-dimmed)',
-
+  'background-header': 'var(--color-background-header)',
   'background-body': 'var(--color-background-body)',
   'background-default-subtle': 'var(--color-background-default-subtle)',
   'background-neutral-subtle': 'var(--color-background-neutral-subtle)',

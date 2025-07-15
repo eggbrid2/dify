@@ -49,7 +49,7 @@ const Header = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSegment])
   return (
-    <div className='relative flex flex-1 items-center justify-between bg-background-body'>
+    <div className='relative flex flex-1 items-center justify-between bg-background-header'>
       <div className='flex items-center'>
         {isMobile && <div
           className='flex h-8 w-8 cursor-pointer items-center justify-center'
@@ -60,15 +60,17 @@ const Header = () => {
         {
           !isMobile
           && <div className='flex shrink-0 items-center gap-1.5 self-stretch pl-3'>
-            <Link href="/apps" className='flex h-8 w-[52px] shrink-0 items-center justify-center gap-2'>
+            <Link href="/apps" className='flex h-8 w-[110px] shrink-0 items-center justify-center'>
               <DifyLogo />
             </Link>
-            <div className='font-light text-divider-deep'>/</div>
-            <div className='flex items-center gap-0.5'>
-              <WorkspaceProvider>
-                <WorkplaceSelector />
-              </WorkspaceProvider>
-              {enableBilling ? <PlanBadge allowHover sandboxAsUpgrade plan={plan.type} onClick={handlePlanClick} /> : <LicenseNav />}
+            {<div className='font-light text-components-button-primary-text'>/</div>}
+            <div className='absolute left-[140px] top-1/2 flex -translate-y-1/2 items-center'>
+              {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
+              {!isCurrentWorkspaceDatasetOperator && <AppNav />}
+              {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
+              {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
+              {<PluginsNav className={navClassName} />}
+
             </div>
           </div>
         }
@@ -82,20 +84,32 @@ const Header = () => {
           {enableBilling ? <PlanBadge allowHover sandboxAsUpgrade plan={plan.type} onClick={handlePlanClick} /> : <LicenseNav />}
         </div >
       )}
-      {
+      {/* {
         !isMobile && (
           <div className='absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center'>
             {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
             {!isCurrentWorkspaceDatasetOperator && <AppNav />}
             {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
             {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
+            <div className='flex items-center gap-0.5'>
+              <WorkspaceProvider>
+                <WorkplaceSelector />
+              </WorkspaceProvider>
+              {enableBilling ? <PlanBadge allowHover sandboxAsUpgrade plan={plan.type} onClick={handlePlanClick} /> : <LicenseNav />}
+            </div>
           </div>
         )
-      }
+      } */}
       <div className='flex shrink-0 items-center pr-3'>
-        <EnvNav />
+        {/* <EnvNav />
         <div className='mr-2'>
           <PluginsNav />
+        </div> */}
+        <div className='flex items-center gap-0.5'>
+          <WorkspaceProvider>
+            <WorkplaceSelector />
+          </WorkspaceProvider>
+          {enableBilling ? <PlanBadge allowHover sandboxAsUpgrade plan={plan.type} onClick={handlePlanClick} /> : <LicenseNav />}
         </div>
         <AccountDropdown />
       </div>

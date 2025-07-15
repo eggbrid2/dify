@@ -27,17 +27,17 @@ const PluginsNav = ({
 
   return (
     <Link href="/plugins" className={classNames(
-      className, 'group', 'plugins-nav-button', // used for use-fold-anim-into.ts
+      className, 'group text-sm font-medium', // used for use-fold-anim-into.ts
     )}>
       <div
         className={classNames(
-          'relative flex flex-row h-8 p-1.5 gap-0.5 border border-transparent items-center justify-center rounded-xl system-sm-medium-uppercase',
-          activated && 'border-components-main-nav-nav-button-border bg-components-main-nav-nav-button-bg-active shadow-md text-components-main-nav-nav-button-text',
-          !activated && 'text-text-tertiary hover:bg-state-base-hover hover:text-text-secondary',
+          'flex items-center h-7 px-2.5 cursor-pointer rounded-[10px]',
+          activated && 'font-semibold bg-components-main-nav-nav-button-bg-active hover:bg-components-main-nav-nav-button-bg-active-hover shadow-md',
+          activated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-button-primary-text hover:bg-components-main-nav-nav-button-bg-hover',
           (isInstallingWithError || isFailed) && !activated && 'border-components-panel-border-subtle',
         )}
       >
-        {
+        {/* {
           (isFailed || isInstallingWithError) && !activated && (
             <Indicator
               color='red'
@@ -56,8 +56,8 @@ const PluginsNav = ({
               <DownloadingIcon />
             )
           }
-        </div>
-        <span className='px-0.5'>{t('common.menus.plugins')}</span>
+        </div> */}
+        {t('common.menus.plugins')}
       </div>
     </Link>
   )

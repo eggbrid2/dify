@@ -71,7 +71,7 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
       })
     }
     setShowConfirmDelete(false)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [app.id])
 
   const onEdit: CreateAppModalProps['onConfirm'] = useCallback(async ({
@@ -226,7 +226,7 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
       }
     }
     return (
-      <div className="relative w-full py-1" onMouseLeave={onMouseLeave}>
+      <div className="relative col-span-1 inline-flex h-[160px] flex-col justify-between rounded-xl border-[0.5px] border-components-card-border bg-components-card-bg mt-4" onMouseLeave={onMouseLeave}>
         <button className='mx-1 flex h-8 w-[calc(100%_-_8px)] cursor-pointer items-center gap-2 rounded-lg px-3 py-[6px] hover:bg-state-base-hover' onClick={onClickSettings}>
           <span className='system-sm-regular text-text-secondary'>{t('app.editApp')}</span>
         </button>
@@ -277,7 +277,7 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
           e.preventDefault()
           getRedirection(isCurrentWorkspaceEditor, app, push)
         }}
-        className='group relative col-span-1 inline-flex h-[160px] cursor-pointer flex-col rounded-xl border-[1px] border-solid border-components-card-border bg-components-card-bg shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg'
+        className='group relative col-span-1 inline-flex h-[160px] cursor-pointer flex-col rounded-xl border-[1px] border-solid border-components-card-border bg-components-card-bg shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg  mt-4'
       >
         <div className='flex h-[66px] shrink-0 grow-0 items-center gap-3 px-[14px] pb-3 pt-[14px]'>
           <div className='relative shrink-0'>

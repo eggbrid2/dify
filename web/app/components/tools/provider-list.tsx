@@ -18,6 +18,7 @@ import PluginDetailPanel from '@/app/components/plugins/plugin-detail-panel'
 import { useSelector as useAppContextSelector } from '@/context/app-context'
 import { useAllToolProviders } from '@/service/use-tools'
 import { useInstalledPluginList, useInvalidateInstalledPluginList } from '@/service/use-plugins'
+import s from './style.module.css'
 
 const ProviderList = () => {
   const { t } = useTranslation()
@@ -66,36 +67,39 @@ const ProviderList = () => {
 
   return (
     <>
-      <div className='relative flex h-0 shrink-0 grow overflow-hidden'>
+      <div className={'mt-3 flex items-center justify-between px-6'}>
+        <div className='shrink-0 px-6 pt-2 flex flex-row justify-start items-center'>
+          <div className={`mb-1  ${s.textGradient}  text-xl font-semibold`}>您当前下载的插件</div>
+          <div className='ml-2 text-sm text-text-tertiary'>您可以通过市场来下载更多插件</div>
+        </div>
+        <div className='flex items-center gap-2'>
+          <LabelFilter value={tagFilterValue} onChange={handleTagsChange} />
+          <Input
+            showLeftIcon
+            showClearIcon
+            wrapperClassName='w-[200px]'
+            value={keywords}
+            onChange={e => handleKeywordsChange(e.target.value)}
+            onClear={() => handleKeywordsChange('')}
+          />
+
+        </div>
+      </div>
+      <div className='mt-3 relative flex flex-row h-full'>
+
+        <TabSliderNew
+          value={activeTab}
+          onChange={(state) => {
+            setActiveTab(state)
+            if (state !== activeTab)
+              setCurrentProviderId(undefined)
+          }}
+          options={options}
+        />
         <div
           ref={containerRef}
-          className='relative flex grow flex-col overflow-y-auto bg-background-body'
+          className='relative flex grow flex-col overflow-y-auto bg-components-kbd-bg-gray'
         >
-          <div className={cn(
-            'sticky top-0 z-20 flex flex-wrap items-center justify-between gap-y-2 bg-background-body px-12 pb-2 pt-4 leading-[56px]',
-            currentProviderId && 'pr-6',
-          )}>
-            <TabSliderNew
-              value={activeTab}
-              onChange={(state) => {
-                setActiveTab(state)
-                if (state !== activeTab)
-                  setCurrentProviderId(undefined)
-              }}
-              options={options}
-            />
-            <div className='flex items-center gap-2'>
-              <LabelFilter value={tagFilterValue} onChange={handleTagsChange} />
-              <Input
-                showLeftIcon
-                showClearIcon
-                wrapperClassName='w-[200px]'
-                value={keywords}
-                onChange={e => handleKeywordsChange(e.target.value)}
-                onClear={() => handleKeywordsChange('')}
-              />
-            </div>
-          </div>
           {(filteredCollectionList.length > 0 || activeTab !== 'builtin') && (
             <div className={cn(
               'relative grid shrink-0 grid-cols-1 content-start gap-4 px-12 pb-4 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',

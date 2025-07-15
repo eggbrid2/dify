@@ -64,10 +64,10 @@ export default function CheckCode() {
   }
 
   return <div className='flex flex-col gap-3'>
-    <div className='inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-components-panel-border-subtle bg-background-default-dodge text-text-accent-light-mode-only shadow-lg'>
+    {/* <div className='inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-components-panel-border-subtle bg-background-default-dodge text-text-accent-light-mode-only shadow-lg'>
       <RiMailSendFill className='h-6 w-6 text-2xl' />
-    </div>
-    <div className='pb-4 pt-2'>
+    </div> */}
+    <div className='pb-4 pt-2 flex flex-col items-center justify-center'>
       <h2 className='title-4xl-semi-bold text-text-primary'>{t('login.checkCode.checkYourEmail')}</h2>
       <p className='body-md-regular mt-2 text-text-secondary'>
         <span dangerouslySetInnerHTML={{ __html: t('login.checkCode.tips', { email }) as string }}></span>

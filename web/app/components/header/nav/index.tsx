@@ -55,13 +55,13 @@ const Nav = ({
           onClick={() => setAppDetail()}
           className={classNames(`
             flex items-center h-7 px-2.5 cursor-pointer rounded-[10px]
-            ${isActivated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-main-nav-nav-button-text'}
+            ${isActivated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-button-primary-text'}
             ${curNav && isActivated && 'hover:bg-components-main-nav-nav-button-bg-active-hover'}
           `)}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <div className='mr-2'>
+          {/* <div className='mr-2'>
             {
               (hovered && curNav)
                 ? <ArrowNarrowLeft className='h-4 w-4' />
@@ -69,7 +69,7 @@ const Nav = ({
                   ? activeIcon
                   : icon
             }
-          </div>
+          </div> */}
           {text}
         </div>
       </Link>

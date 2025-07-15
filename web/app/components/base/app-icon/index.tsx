@@ -54,15 +54,16 @@ const AppIcon: FC<AppIconProps> = ({
   onClick,
 }) => {
   const isValidImageIcon = iconType === 'image' && imageUrl
-
+  const url = imageUrl?.startsWith('/console/api') ? `${process.env.NEXT_PUBLIC_API_PREFIX + imageUrl.replace('/console/api', '')}` : imageUrl;
+  const bg = background?.startsWith('/console/api') ? `${process.env.NEXT_PUBLIC_API_PREFIX + background.replace('/console/api', '')}` : background
   return <span
     className={classNames(appIconVariants({ size, rounded }), className)}
-    style={{ background: isValidImageIcon ? undefined : (background || '#FFEAD5') }}
+    style={{ background: isValidImageIcon ? undefined : (bg || '#FFEAD5') }}
     onClick={onClick}
   >
     {isValidImageIcon
 
-      ? <img src={imageUrl} className="h-full w-full" alt="app icon" />
+      ? <img src={url} className="h-full w-full" alt="app icon" />
       : (innerIcon || ((icon && icon !== '') ? <em-emoji id={icon} /> : <em-emoji id='🤖' />))
     }
   </span>

@@ -42,6 +42,8 @@ const nextConfig = {
   },
   experimental: {
   },
+  // swcMinify: true,  // 保持开启，SWC比Babel更快
+
   // fix all before production. Now it slow the develop speed.
   eslint: {
     // Warning: This allows production builds to successfully complete even if

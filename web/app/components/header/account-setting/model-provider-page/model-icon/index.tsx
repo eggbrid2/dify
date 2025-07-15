@@ -26,11 +26,14 @@ const ModelIcon: FC<ModelIconProps> = ({
     return <div className='flex items-center justify-center'><OpenaiBlue className={cn('h-5 w-5', className)} /></div>
   if (provider?.provider && ['openai', 'langgenius/openai/openai'].includes(provider.provider) && modelName?.startsWith('gpt-4'))
     return <div className='flex items-center justify-center'><OpenaiViolet className={cn('h-5 w-5', className)} /></div>
-
   if (provider?.icon_small) {
+    let url = renderI18nObject(provider.icon_small, language);
+    if (url.startsWith('/console/api')) {
+      url = process.env.NEXT_PUBLIC_API_PREFIX + url.replace('/console/api', '')
+    }
     return (
       <div className={cn('flex h-5 w-5 items-center justify-center', isDeprecated && 'opacity-50', className)}>
-        <img alt='model-icon' src={renderI18nObject(provider.icon_small, language)}/>
+        <img alt='model-icon' src={url} />
       </div>
     )
   }

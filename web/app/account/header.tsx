@@ -14,14 +14,13 @@ const Header = () => {
   const back = useCallback(() => {
     router.back()
   }, [router])
-
+  //<div className='h-4 w-[1px] origin-center rotate-[11.31deg] bg-divider-regular' />
   return (
     <div className='flex flex-1 items-center justify-between px-4'>
-      <div className='flex items-center gap-3'>
+      <div className='flex items-center gap-5'>
         <div className='flex cursor-pointer items-center' onClick={back}>
           <DifyLogo />
         </div>
-        <div className='h-4 w-[1px] origin-center rotate-[11.31deg] bg-divider-regular' />
         <p className='title-3xl-semi-bold relative mt-[-2px] text-text-primary'>{t('common.account.account')}</p>
       </div>
       <div className='flex shrink-0 items-center gap-3'>

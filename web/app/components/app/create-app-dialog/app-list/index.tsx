@@ -190,9 +190,9 @@ const Apps = ({
         <div className='h-8 w-[180px]'></div>
       </div>
       <div className='relative flex flex-1 overflow-y-auto'>
-        {!searchKeywords && <div className='h-full w-[200px] p-4'>
+        {/* {!searchKeywords && <div className='h-full w-[200px] p-4'>
           <Sidebar current={currCategory as AppCategories} categories={categories} onClick={(category) => { setCurrCategory(category) }} onCreateFromBlank={onCreateFromBlank} />
-        </div>}
+        </div>} */}
         <div className='h-full flex-1 shrink-0 grow overflow-auto border-l border-divider-burn p-6 pt-2'>
           {searchFilteredList && searchFilteredList.length > 0 && <>
             <div className='pb-1 pt-4'>

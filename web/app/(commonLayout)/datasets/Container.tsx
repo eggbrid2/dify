@@ -29,6 +29,7 @@ import { useTabSearchParams } from '@/hooks/use-tab-searchparams'
 import { useStore as useTagStore } from '@/app/components/base/tag-management/store'
 import { useAppContext } from '@/context/app-context'
 import { useExternalApiPanel } from '@/context/external-api-panel-context'
+import s from './style.module.css'
 
 const Container = () => {
   const { t } = useTranslation()
@@ -85,55 +86,76 @@ const Container = () => {
 
   return (
     <div ref={containerRef} className='scroll-container relative flex grow flex-col overflow-y-auto bg-background-body'>
-      <div className='sticky top-0 z-10 flex flex-wrap items-center justify-between gap-y-2 bg-background-body px-12 pb-2 pt-4 leading-[56px]'>
+
+      <div className={'mt-3 flex items-center justify-between px-6'}>
+        <div className='shrink-0 px-6 pt-2 flex flex-row justify-start items-center'>
+          <div className={`mb-1  ${s.textGradient}  text-xl font-semibold`}>您创建的知识库</div>
+          <div className='ml-2 text-sm text-text-tertiary'>您可以通过知识库来增强LLM的上下文</div>
+        </div>
+        <div className='flex items-center gap-2'>
+          <div className='sticky top-0 z-10 flex flex-col items-center justify-between'>
+            {activeTab === 'dataset' && (
+              <div className='flex items-center justify-center gap-2'>
+                {isCurrentWorkspaceOwner && <CheckboxWithLabel
+                  isChecked={includeAll}
+                  onChange={toggleIncludeAll}
+                  label={t('dataset.allKnowledge')}
+                  labelClassName='system-md-regular text-text-secondary'
+                  className='mr-2'
+                  tooltip={t('dataset.allKnowledgeDescription') as string}
+                />}
+                <TagFilter type='knowledge' value={tagFilterValue} onChange={handleTagsChange} />
+                <Input
+                  showLeftIcon
+                  showClearIcon
+                  wrapperClassName='w-[200px]'
+                  value={keywords}
+                  onChange={e => handleKeywordsChange(e.target.value)}
+                  onClear={() => handleKeywordsChange('')}
+                />
+                <div className="h-4 w-[1px] bg-divider-regular" />
+                <Button
+                  className='shadows-shadow-xs gap-0.5'
+                  onClick={() => setShowExternalApiPanel(true)}
+                >
+                  <ApiConnectionMod className='h-4 w-4 text-components-button-secondary-text' />
+                  <div className='system-sm-medium flex items-center justify-center gap-1 px-0.5 text-components-button-secondary-text'>{t('dataset.externalAPIPanelTitle')}</div>
+                </Button>
+              </div>
+            )}
+            {activeTab === 'api' && data && <ApiServer apiBaseUrl={data.api_base_url || ''} />}
+          </div>
+
+        </div>
+      </div>
+
+
+      <div className='mt-3 relative flex flex-row h-full'>
         <TabSliderNew
           value={activeTab}
           onChange={newActiveTab => setActiveTab(newActiveTab)}
           options={options}
         />
-        {activeTab === 'dataset' && (
-          <div className='flex items-center justify-center gap-2'>
-            {isCurrentWorkspaceOwner && <CheckboxWithLabel
-              isChecked={includeAll}
-              onChange={toggleIncludeAll}
-              label={t('dataset.allKnowledge')}
-              labelClassName='system-md-regular text-text-secondary'
-              className='mr-2'
-              tooltip={t('dataset.allKnowledgeDescription') as string}
-            />}
-            <TagFilter type='knowledge' value={tagFilterValue} onChange={handleTagsChange} />
-            <Input
-              showLeftIcon
-              showClearIcon
-              wrapperClassName='w-[200px]'
-              value={keywords}
-              onChange={e => handleKeywordsChange(e.target.value)}
-              onClear={() => handleKeywordsChange('')}
-            />
-            <div className="h-4 w-[1px] bg-divider-regular" />
-            <Button
-              className='shadows-shadow-xs gap-0.5'
-              onClick={() => setShowExternalApiPanel(true)}
-            >
-              <ApiConnectionMod className='h-4 w-4 text-components-button-secondary-text' />
-              <div className='system-sm-medium flex items-center justify-center gap-1 px-0.5 text-components-button-secondary-text'>{t('dataset.externalAPIPanelTitle')}</div>
-            </Button>
-          </div>
-        )}
-        {activeTab === 'api' && data && <ApiServer apiBaseUrl={data.api_base_url || ''} />}
-      </div>
-      {activeTab === 'dataset' && (
-        <>
-          <Datasets containerRef={containerRef} tags={tagIDs} keywords={searchKeywords} includeAll={includeAll} />
-          <DatasetFooter />
-          {showTagManagementModal && (
-            <TagManagementModal type='knowledge' show={showTagManagementModal} />
-          )}
-        </>
-      )}
-      {activeTab === 'api' && data && <Doc apiBaseUrl={data.api_base_url || ''} />}
+        <div className='relative h-full flex flex-1 shrink-0 grow flex-col overflow-auto pb-6 bg-components-kbd-bg-gray '>
 
-      {showExternalApiPanel && <ExternalAPIPanel onClose={() => setShowExternalApiPanel(false)} />}
+
+
+          {activeTab === 'dataset' && (
+            <>
+              <Datasets containerRef={containerRef} tags={tagIDs} keywords={searchKeywords} includeAll={includeAll} />
+              <DatasetFooter />
+              {showTagManagementModal && (
+                <TagManagementModal type='knowledge' show={showTagManagementModal} />
+              )}
+            </>
+          )}
+          {activeTab === 'api' && data && <Doc apiBaseUrl={data.api_base_url || ''} />}
+
+          {showExternalApiPanel && <ExternalAPIPanel onClose={() => setShowExternalApiPanel(false)} />}
+
+        </div>
+
+      </div>
     </div>
   )
 }

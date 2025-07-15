@@ -29,6 +29,7 @@ import { useStore as useTagStore } from '@/app/components/base/tag-management/st
 import TagManagementModal from '@/app/components/base/tag-management'
 import TagFilter from '@/app/components/base/tag-management/filter'
 import CheckboxWithLabel from '@/app/components/datasets/create/website/base/checkbox-with-label'
+import s from './style.module.css'
 
 const getKey = (
   pageIndex: number,
@@ -152,12 +153,11 @@ const Apps = () => {
 
   return (
     <>
-      <div className='sticky top-0 z-10 flex flex-wrap items-center justify-between gap-y-2 bg-background-body px-12 pb-2 pt-4 leading-[56px]'>
-        <TabSliderNew
-          value={activeTab}
-          onChange={setActiveTab}
-          options={options}
-        />
+      <div className={'mt-3 flex items-center justify-between px-6'}>
+        <div className='shrink-0 px-6 pt-2 flex flex-row justify-start items-center'>
+          <div className={`mb-1  ${s.textGradient}  text-xl font-semibold`}>您当前已创建的应用</div>
+          <div className='ml-2 text-sm text-text-tertiary'>您可以通过模版创建应用，或者导入dsl文件</div>
+        </div>
         <div className='flex items-center gap-2'>
           <CheckboxWithLabel
             className='mr-2'
@@ -174,21 +174,33 @@ const Apps = () => {
             onChange={e => handleKeywordsChange(e.target.value)}
             onClear={() => handleKeywordsChange('')}
           />
+
         </div>
       </div>
-      {(data && data[0].total > 0)
-        ? <div className='relative grid grow grid-cols-1 content-start gap-4 px-12 pt-2 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 2k:grid-cols-6'>
-          {isCurrentWorkspaceEditor
-            && <NewAppCard ref={newAppCardRef} onSuccess={mutate} />}
-          {data.map(({ data: apps }) => apps.map(app => (
-            <AppCard key={app.id} app={app} onRefresh={mutate} />
-          )))}
+      <div className='mt-3 relative flex flex-row h-full'>
+        <TabSliderNew
+          value={activeTab}
+          onChange={setActiveTab}
+          options={options}
+        />
+
+        <div className='relative h-full flex flex-1 shrink-0 grow flex-col overflow-auto pb-6 bg-components-kbd-bg-gray '>
+          {(data && data[0].total > 0)
+            ? <div className='relative grid grow grid-cols-1 content-start gap-4 overflow-hidden px-12 pt-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-6 2k:grid-cols-8'>
+              {isCurrentWorkspaceEditor
+                && <NewAppCard ref={newAppCardRef} onSuccess={mutate} />}
+              {data.map(({ data: apps }) => apps.map(app => (
+                <AppCard key={app.id} app={app} onRefresh={mutate} />
+              )))}
+            </div>
+            : <div className='relative grid grow grid-cols-1 content-start gap-4 overflow-hidden px-12 pt-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-6 2k:grid-cols-8'>
+              {isCurrentWorkspaceEditor
+                && <NewAppCard ref={newAppCardRef} className='z-10' onSuccess={mutate} />}
+              <NoAppsFound />
+            </div>}
         </div>
-        : <div className='relative grid grow grid-cols-1 content-start gap-4 overflow-hidden px-12 pt-2 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 2k:grid-cols-6'>
-          {isCurrentWorkspaceEditor
-            && <NewAppCard ref={newAppCardRef} className='z-10' onSuccess={mutate} />}
-          <NoAppsFound />
-        </div>}
+      </div>
+
       <CheckModal />
       <div ref={anchorRef} className='h-0'> </div>
       {showTagManagementModal && (
