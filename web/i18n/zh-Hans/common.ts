@@ -147,15 +147,10 @@ const translation = {
   },
   menus: {
     status: 'beta',
-<<<<<<< HEAD
     explore: '模版',
     apps: '应用',
-=======
-    explore: '探索',
-    apps: '工作室',
     appDetail: '应用详情',
     account: '账户',
->>>>>>> main
     plugins: '插件',
     exploreMarketplace: '探索 Marketplace',
     pluginsTips: '集成第三方插件或创建与 ChatGPT 兼容的 AI 插件。',

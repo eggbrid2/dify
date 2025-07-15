@@ -31,11 +31,8 @@ import { useStore as useTagStore } from '@/app/components/base/tag-management/st
 import TagManagementModal from '@/app/components/base/tag-management'
 import TagFilter from '@/app/components/base/tag-management/filter'
 import CheckboxWithLabel from '@/app/components/datasets/create/website/base/checkbox-with-label'
-<<<<<<< HEAD
 import s from './style.module.css'
-=======
 import CreateFromDSLModal from '@/app/components/app/create-from-dsl-modal'
->>>>>>> main
 
 const getKey = (
   pageIndex: number,
@@ -172,7 +169,6 @@ const Apps = () => {
 
   return (
     <>
-<<<<<<< HEAD
       <div className={'mt-3 flex items-center justify-between px-6'}>
         <div className='shrink-0 px-6 pt-2 flex flex-row justify-start items-center'>
           <div className={`mb-1  ${s.textGradient}  text-xl font-semibold`}>您当前已创建的应用</div>
@@ -195,37 +191,7 @@ const Apps = () => {
             onClear={() => handleKeywordsChange('')}
           />
 
-=======
-      <div ref={containerRef} className='relative flex h-0 shrink-0 grow flex-col overflow-y-auto bg-background-body'>
-        {dragging && (
-          <div className="absolute inset-0 z-50 m-0.5 rounded-2xl border-2 border-dashed border-components-dropzone-border-accent bg-[rgba(21,90,239,0.14)] p-2">
-          </div>
-        )}
 
-        <div className='sticky top-0 z-10 flex flex-wrap items-center justify-between gap-y-2 bg-background-body px-12 pb-2 pt-4 leading-[56px]'>
-          <TabSliderNew
-            value={activeTab}
-            onChange={setActiveTab}
-            options={options}
-          />
-          <div className='flex items-center gap-2'>
-            <CheckboxWithLabel
-              className='mr-2'
-              label={t('app.showMyCreatedAppsOnly')}
-              isChecked={isCreatedByMe}
-              onChange={handleCreatedByMeChange}
-            />
-            <TagFilter type='app' value={tagFilterValue} onChange={handleTagsChange} />
-            <Input
-              showLeftIcon
-              showClearIcon
-              wrapperClassName='w-[200px]'
-              value={keywords}
-              onChange={e => handleKeywordsChange(e.target.value)}
-              onClear={() => handleKeywordsChange('')}
-            />
-          </div>
->>>>>>> main
         </div>
         {(data && data[0].total > 0)
           ? <div className='relative grid grow grid-cols-1 content-start gap-4 px-12 pt-2 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 2k:grid-cols-6'>
@@ -257,7 +223,6 @@ const Apps = () => {
           <TagManagementModal type='app' show={showTagManagementModal} />
         )}
       </div>
-<<<<<<< HEAD
       <div className='mt-3 relative flex flex-row h-full'>
         <TabSliderNew
           value={activeTab}
@@ -286,8 +251,7 @@ const Apps = () => {
       <div ref={anchorRef} className='h-0'> </div>
       {showTagManagementModal && (
         <TagManagementModal type='app' show={showTagManagementModal} />
-=======
-
+      )}
       {showCreateFromDSLModal && (
         <CreateFromDSLModal
           show={showCreateFromDSLModal}
@@ -302,7 +266,6 @@ const Apps = () => {
           }}
           droppedFile={droppedDSLFile}
         />
->>>>>>> main
       )}
     </>
   )

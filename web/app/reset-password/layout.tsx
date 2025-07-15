@@ -21,16 +21,9 @@ export default function SignInLayout({ children }: any) {
         <div className='flex flex-col md:w-[450px] p-10 rounded-2xl border border-effects-highlight bg-components-card-bg'>
           {children}
         </div>
-<<<<<<< HEAD
-
         {/* <div className='system-xs-regular px-8 py-6 text-text-tertiary'>
           © {new Date().getFullYear()} LangGenius, Inc. All rights reserved.
         </div> */}
-=======
-        {!systemFeatures.branding.enabled && <div className='system-xs-regular px-8 py-6 text-text-tertiary'>
-          © {new Date().getFullYear()} LangGenius, Inc. All rights reserved.
-        </div>}
->>>>>>> main
       </div>
     </div>
   </>

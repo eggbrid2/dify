@@ -54,23 +54,16 @@ const Nav = ({
         <div
           onClick={() => setAppDetail()}
           className={classNames(`
-<<<<<<< HEAD
             flex items-center h-7 px-2.5 cursor-pointer rounded-[10px]
             ${isActivated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-button-primary-text'}
-=======
-            flex h-7 cursor-pointer items-center rounded-[10px] px-2.5
-            ${isActivated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-main-nav-nav-button-text'}
->>>>>>> main
+
             ${curNav && isActivated && 'hover:bg-components-main-nav-nav-button-bg-active-hover'}
           `)}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-<<<<<<< HEAD
           {/* <div className='mr-2'>
-=======
-          <div>
->>>>>>> main
+
             {
               (hovered && curNav)
                 ? <ArrowNarrowLeft className='h-4 w-4' />
@@ -78,15 +71,9 @@ const Nav = ({
                   ? activeIcon
                   : icon
             }
-<<<<<<< HEAD
           </div> */}
           {text}
-=======
-          </div>
-          <div className='ml-2 max-[1024px]:hidden'>
-            {text}
-          </div>
->>>>>>> main
+
         </div>
       </Link>
       {

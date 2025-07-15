@@ -27,19 +27,11 @@ const ExploreNav = ({
     )}>
       {/* {
         activated
-<<<<<<< HEAD
           ? <RiPlanetFill className='mr-2 h-4 w-4' />
           : <RiPlanetLine className='mr-2 h-4 w-4' />
       } */}
       {t('common.menus.explore')}
-=======
-          ? <RiPlanetFill className='h-4 w-4' />
-          : <RiPlanetLine className='h-4 w-4' />
-      }
-      <div className='ml-2 max-[1024px]:hidden'>
-        {t('common.menus.explore')}
-      </div>
->>>>>>> main
+
     </Link>
   )
 }

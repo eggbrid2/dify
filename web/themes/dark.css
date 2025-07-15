@@ -378,13 +378,9 @@ html[data-theme="dark"] {
   --color-text-logo-text: #e9e9ec;
   --color-text-empty-state-icon: rgb(200 206 218 / 0.3);
   --color-text-inverted: #ffffff;
-<<<<<<< HEAD
   --color-text-inverted-dimmed: #ffffffcc;
   --color-background-header: #1d1d20;
-=======
   --color-text-inverted-dimmed: rgb(255 255 255 / 0.8);
-
->>>>>>> main
   --color-background-body: #1d1d20;
   --color-background-default-subtle: #222225;
   --color-background-neutral-subtle: #1d1d20;
@@ -752,15 +748,9 @@ html[data-theme="dark"] {
   --color-third-party-aws-alt: #192639;
 
   --color-saas-background: #0b0b0e;
-<<<<<<< HEAD
   --color-saas-pricing-grid-bg: #c8ceda33;
-  --color-sider-bg: #1d1e1f
-}
-=======
+  --color-sider-bg: #1d1e1f;
   --color-saas-pricing-grid-bg: rgb(200 206 218 / 0.2);
-
   --color-dify-logo-dify-logo-blue: #e8e8e8;
   --color-dify-logo-dify-logo-black: #e8e8e8;
-
 }
->>>>>>> main

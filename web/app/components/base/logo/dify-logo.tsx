@@ -33,20 +33,13 @@ const DifyLogo: FC<DifyLogoProps> = ({
   const themedStyle = (theme === 'dark' && style === 'default') ? 'monochromeWhite' : style
 
   return (
-<<<<<<< HEAD
     <div className='flex items-center text-components-button-primary-text'>AI管理平台</div>
     // <img
     //   src={`${WEB_PREFIX}${logoPathMap[themedStyle]}`}
     //   className={classNames('block object-contain', logoSizeMap[size], className)}
     //   alt='Dify logo'
     // />
-=======
-    <img
-      src={`${basePath}${logoPathMap[themedStyle]}`}
-      className={classNames('block object-contain', logoSizeMap[size], className)}
-      alt='Dify logo'
-    />
->>>>>>> main
+
   )
 }
 
