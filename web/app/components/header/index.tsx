@@ -1,9 +1,6 @@
 'use client'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import Link from 'next/link'
-import { useBoolean } from 'ahooks'
-import { useSelectedLayoutSegment } from 'next/navigation'
-import { Bars3Icon } from '@heroicons/react/20/solid'
 import AccountDropdown from './account-dropdown'
 import AppNav from './app-nav'
 import DatasetNav from './dataset-nav'
@@ -21,21 +18,21 @@ import { useModalContext } from '@/context/modal-context'
 import PlanBadge from './plan-badge'
 import LicenseNav from './license-env'
 import { Plan } from '../billing/type'
+import { useGlobalPublicStore } from '@/context/global-public-context'
 
 const navClassName = `
-  flex items-center relative mr-0 sm:mr-3 px-3 h-8 rounded-xl
+  flex items-center relative px-3 h-8 rounded-xl
   font-medium text-sm
   cursor-pointer
 `
 
 const Header = () => {
   const { isCurrentWorkspaceEditor, isCurrentWorkspaceDatasetOperator } = useAppContext()
-  const selectedSegment = useSelectedLayoutSegment()
   const media = useBreakpoints()
   const isMobile = media === MediaType.mobile
-  const [isShowNavMenu, { toggle, setFalse: hideNavMenu }] = useBoolean(false)
   const { enableBilling, plan } = useProviderContext()
   const { setShowPricingModal, setShowAccountSettingModal } = useModalContext()
+  const systemFeatures = useGlobalPublicStore(s => s.systemFeatures)
   const isFreePlan = plan.type === Plan.sandbox
   const handlePlanClick = useCallback(() => {
     if (isFreePlan)
@@ -44,6 +41,7 @@ const Header = () => {
       setShowAccountSettingModal({ payload: 'billing' })
   }, [isFreePlan, setShowAccountSettingModal, setShowPricingModal])
 
+<<<<<<< HEAD
   useEffect(() => {
     hideNavMenu()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,8 +69,35 @@ const Header = () => {
               {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
               {<PluginsNav className={navClassName} />}
 
-            </div>
+=======
+  if (isMobile) {
+    return (
+      <div className=''>
+        <div className='flex items-center justify-between px-2'>
+          <div className='flex items-center'>
+            <Link href="/apps" className='flex h-8 shrink-0 items-center justify-center px-0.5'>
+              {systemFeatures.branding.enabled && systemFeatures.branding.workspace_logo
+                ? <img
+                  src={systemFeatures.branding.workspace_logo}
+                  className='block h-[22px] w-auto object-contain'
+                  alt='logo'
+                />
+                : <DifyLogo />}
+            </Link>
+            <div className='mx-1.5 shrink-0 font-light text-divider-deep'>/</div>
+            <WorkspaceProvider>
+              <WorkplaceSelector />
+            </WorkspaceProvider>
+            {enableBilling ? <PlanBadge allowHover sandboxAsUpgrade plan={plan.type} onClick={handlePlanClick} /> : <LicenseNav />}
           </div>
+          <div className='flex items-center'>
+            <div className='mr-2'>
+              <PluginsNav />
+>>>>>>> main
+            </div>
+            <AccountDropdown />
+          </div>
+<<<<<<< HEAD
         }
       </div >
       {isMobile && (
@@ -102,6 +127,45 @@ const Header = () => {
       } */}
       <div className='flex shrink-0 items-center pr-3'>
         {/* <EnvNav />
+=======
+        </div>
+        <div className='my-1 flex items-center justify-center space-x-1'>
+          {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
+          {!isCurrentWorkspaceDatasetOperator && <AppNav />}
+          {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
+          {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className='flex h-[56px] items-center'>
+      <div className='flex min-w-0 flex-[1]  items-center pl-3 pr-2 min-[1280px]:pr-3'>
+        <Link href="/apps" className='flex h-8 shrink-0 items-center justify-center px-0.5'>
+          {systemFeatures.branding.enabled && systemFeatures.branding.workspace_logo
+            ? <img
+              src={systemFeatures.branding.workspace_logo}
+              className='block h-[22px] w-auto object-contain'
+              alt='logo'
+            />
+            : <DifyLogo />}
+        </Link>
+        <div className='mx-1.5 shrink-0 font-light text-divider-deep'>/</div>
+        <WorkspaceProvider>
+          <WorkplaceSelector />
+        </WorkspaceProvider>
+        {enableBilling ? <PlanBadge allowHover sandboxAsUpgrade plan={plan.type} onClick={handlePlanClick} /> : <LicenseNav />}
+      </div>
+      <div className='flex items-center space-x-2'>
+        {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
+        {!isCurrentWorkspaceDatasetOperator && <AppNav />}
+        {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
+        {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
+      </div>
+      <div className='flex min-w-0 flex-[1] items-center justify-end pl-2 pr-3 min-[1280px]:pl-3'>
+        <EnvNav />
+>>>>>>> main
         <div className='mr-2'>
           <PluginsNav />
         </div> */}
@@ -113,17 +177,7 @@ const Header = () => {
         </div>
         <AccountDropdown />
       </div>
-      {
-        (isMobile && isShowNavMenu) && (
-          <div className='flex w-full flex-col gap-y-1 p-2'>
-            {!isCurrentWorkspaceDatasetOperator && <ExploreNav className={navClassName} />}
-            {!isCurrentWorkspaceDatasetOperator && <AppNav />}
-            {(isCurrentWorkspaceEditor || isCurrentWorkspaceDatasetOperator) && <DatasetNav />}
-            {!isCurrentWorkspaceDatasetOperator && <ToolsNav className={navClassName} />}
-          </div>
-        )
-      }
-    </div >
+    </div>
   )
 }
 export default Header

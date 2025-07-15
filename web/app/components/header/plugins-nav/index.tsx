@@ -31,9 +31,15 @@ const PluginsNav = ({
     )}>
       <div
         className={classNames(
+<<<<<<< HEAD
           'flex items-center h-7 px-2.5 cursor-pointer rounded-[10px]',
           activated && 'font-semibold bg-components-main-nav-nav-button-bg-active hover:bg-components-main-nav-nav-button-bg-active-hover shadow-md',
           activated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-button-primary-text hover:bg-components-main-nav-nav-button-bg-hover',
+=======
+          'system-sm-medium relative flex h-8 flex-row items-center justify-center gap-0.5 rounded-xl border border-transparent p-1.5',
+          activated && 'border-components-main-nav-nav-button-border bg-components-main-nav-nav-button-bg-active text-components-main-nav-nav-button-text shadow-md',
+          !activated && 'text-text-tertiary hover:bg-state-base-hover hover:text-text-secondary',
+>>>>>>> main
           (isInstallingWithError || isFailed) && !activated && 'border-components-panel-border-subtle',
         )}
       >
