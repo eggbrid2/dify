@@ -126,7 +126,7 @@ const NormalForm = () => {
   return (
     <>
       <div className="mx-auto mt-8 w-full">
-        {isInviteLink
+        {/* {isInviteLink
           ? <div className="mx-auto w-full">
             <h2 className="title-4xl-semi-bold text-text-primary">{t('login.join')}{workspaceName}</h2>
             {!systemFeatures.branding.enabled && <p className='body-md-regular mt-2 text-text-tertiary'>{t('login.joinTipStart')}{workspaceName}{t('login.joinTipEnd')}</p>}
@@ -134,7 +134,10 @@ const NormalForm = () => {
           : <div className="mx-auto w-full">
             <h2 className="title-4xl-semi-bold text-text-primary">{t('login.pageTitle')}</h2>
             {!systemFeatures.branding.enabled && <p className='body-md-regular mt-2 text-text-tertiary'>{t('login.welcome')}</p>}
-          </div>}
+          </div>} */}
+        <div className="w-full flex flex-col items-center justify-center">
+          <h2 className="title-4xl-semi-bold text-text-primary">AI管理平台</h2>
+        </div>
         <div className="relative">
           <div className="mt-6 flex flex-col gap-3">
             {systemFeatures.enable_social_oauth_login && <SocialAuth />}

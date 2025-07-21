@@ -24,7 +24,7 @@ const Header = () => {
   const systemFeatures = useGlobalPublicStore(s => s.systemFeatures)
 
   return (
-    <div className='flex w-full items-center justify-between p-6'>
+    <div className='flex w-full items-center justify-between p-12 absolute top-0'>
       {systemFeatures.branding.enabled && systemFeatures.branding.login_page_logo
         ? <img
           src={systemFeatures.branding.login_page_logo}

@@ -25,7 +25,7 @@ const TabSliderNew: FC<TabSliderProps> = ({
           key={option.value}
           onClick={() => onChange(option.value)}
           className={cn(
-            'flex h-[50px]  w-[190px] cursor-pointer items-center rounded-lg px-3 py-[7px] font-medium leading-[18px] text-text-tertiary hover:bg-components-main-nav-nav-button-bg-active border-b',
+            'flex h-[50px]  w-[190px] cursor-pointer items-center roungided-lg px-3 py-[7px] font-medium leading-[18px] text-text-tertiary hover:bg-components-main-nav-nav-button-bg-active border-b',
             value === option.value && 'border-components-main-nav-nav-button-border bg-components-main-nav-nav-button-bg-active text-components-main-nav-nav-button-text-active shadow-xs',
           )}
         >

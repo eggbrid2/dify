@@ -9,18 +9,26 @@ export default function SignInLayout({ children }: any) {
   const { systemFeatures } = useGlobalPublicStore()
   useDocumentTitle('')
   return <>
-    <div className={cn('flex min-h-screen w-full justify-center bg-background-default-burn p-6')}>
-      <div className={cn('flex w-full shrink-0 flex-col rounded-2xl border border-effects-highlight bg-background-default-subtle')}>
-        <Header />
-        <div className={cn('flex w-full grow flex-col items-center justify-center px-6 md:px-[108px]')}>
-          <div className='flex flex-col md:w-[400px]'>
-            {children}
-          </div>
+    <div className={cn('flex flex-col min-h-screen w-full justify-center p-6 relative')}
+      style={{
+        backgroundImage: 'url(/education/bg_login_bg.png)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}
+    >
+      {/* <div className={cn('flex w-full shrink-0 flex-col rounded-2xl border border-effects-highlight bg-background-default-subtle')}>      </div> */}
+      <Header />
+
+      <div className={cn('flex w-full flex-col  items-center justify-center')}>
+
+        <div className='flex flex-col md:w-[450px] p-10 rounded-2xl border border-effects-highlight bg-components-card-bg'>
+          {children}
         </div>
-        {systemFeatures.branding.enabled === false && <div className='system-xs-regular px-8 py-6 text-text-tertiary'>
-          © {new Date().getFullYear()} LangGenius, Inc. All rights reserved.
-        </div>}
       </div>
-    </div>
+      {/* {systemFeatures.branding.enabled === false && <div className='system-xs-regular px-8 py-6 text-text-tertiary'>
+          © {new Date().getFullYear()} LangGenius, Inc. All rights reserved.
+        </div>} */}
+
+    </div >
   </>
 }
